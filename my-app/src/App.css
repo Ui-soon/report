@@ -1,0 +1,33 @@
+.print-page {
+    height: 297mm; /* A4 용지 높이 */
+    page-break-after: always; /* 각 페이지마다 페이지 구분 */
+}
+
+.first-page {
+    background-color: red;
+}
+
+.second-page {
+    background-color: green;
+}
+
+.third-page {
+    background-color: #12325E;
+    display: flex;
+}
+
+.forth-page {
+    background-color: white;
+}
+
+
+
+
+@media print {
+    .print-page {
+        width: 210mm; /* A4 용지 너비 */
+        height: 297mm; /* A4 용지 높이 */
+        box-sizing: border-box; /* 패딩과 보더가 너비와 높이에 포함되도록 설정 */
+    }
+    /* 인쇄 시 필요한 추가 스타일 */
+}
