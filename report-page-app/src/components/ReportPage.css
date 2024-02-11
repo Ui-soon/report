@@ -3,11 +3,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2개의 열 */
   grid-template-rows: 1fr 1fr 1fr; /* 3개의 행, 자동 높이 조정 */
-  column-gap: 30px;
-  row-gap: 10px;
-  padding: 10px; /* 페이지 내부 여백 */
-  height: 670px;
-  width: 300px;
+  padding: 5px; /* 페이지 내부 여백 */
+  height: 630px;
+  width: 330px;
   justify-content: center;
   align-items: center;
 }
@@ -27,8 +25,8 @@
 
 .section .content {
   background-color: #fff; /* content의 배경색 */
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   padding: 10px; /* 여백 추가 */
   /* 기존 스타일 */
   color: black;

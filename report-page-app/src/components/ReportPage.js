@@ -181,7 +181,7 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
 			<SectionComponent
 				header={
 					<span>
-						과제수행 코멘트
+						과제ㄴ수행 코멘트
 						{HwMonthDropdown}
 					</span>
 				}
