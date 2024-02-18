@@ -2,6 +2,7 @@ import React from 'react';
 
 const GraphComponent = ({ type, scores }) => {
   // 여기에 그래프 렌더링 로직이 들어갑니다. 예를 들어, Chart.js 또는 D3.js 같은 라이브러리를 사용할 수 있습니다.
+  // console.log(scores)
   return (
     <div className="graph-section">
       {scores ? (

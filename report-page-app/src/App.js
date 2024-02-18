@@ -12,10 +12,10 @@ const App = () => {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/admin" Component={IndexChoosePage} />
-          <Route path="/admin/student" Component={StudentPage} />
-          <Route path="/admin/homework" Component={HomeworkPage} />
-          <Route path="/admin/solution" Component={SolutionPage} />
+          <Route exact path="/admin69" Component={IndexChoosePage} />
+          <Route path="/admin69/student" Component={StudentPage} />
+          <Route path="/admin69/homework" Component={HomeworkPage} />
+          <Route path="/admin69/solution" Component={SolutionPage} />
           <Route exact path="/:studentId" Component={ReportPage} />
         </Routes>
       </Router>

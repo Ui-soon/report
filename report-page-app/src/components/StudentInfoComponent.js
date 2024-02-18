@@ -7,10 +7,18 @@ const StudentInfoComponent = ({ studentData }) => {
   }
   return (
     <div className="student-info">
-      <p>이름: {studentData.name}</p>
-      <p>입원성적: {studentData.en_grade}</p>
-      <p>입학날짜: {studentData.en_date}</p>
-      <p>배정반: {studentData.solution_class}</p>
+      <div className="student-info-line">
+        <span className="label">이름 /</span><span className="student-info-data">{studentData.name}</span>
+      </div>
+      <div className="student-info-line">
+        <span className="label">입원성적 /</span> <span className="student-info-data">{studentData.en_grade}</span>
+      </div>
+      <div className="student-info-line">
+        <span className="label">입학날짜 /</span> <span className="student-info-data">{studentData.en_date}</span>
+      </div>
+      <div className="student-info-line">
+        <span className="label">솔루션 배정반 /</span> <span className="student-info-data">{studentData.solution_class}반</span>
+      </div>
     </div>
   );
 };

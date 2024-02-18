@@ -1,0 +1,74 @@
+.student-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-info span {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.student-action {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  margin-top: 100px;
+  color: white;
+}
+
+h3 {
+  margin-top: 50px;
+  color: white;
+}
+
+.table-title {
+  color: white;
+}
+
+.content-table {
+  color: white;
+  resize: horizontal; /* 수직 리사이즈 */
+}
+
+.comment-input {
+  margin-bottom: 20px;
+}
+
+.comment-input textarea {
+  width: 300px;
+  height: 100px;
+}
+
+.comment-list {
+  margin-top: 20px;
+}
+
+.comment {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-cell {
+  max-width: 200px; /* 코멘트 셀의 최대 너비를 설정 */
+  overflow: hidden; /* 넘치는 내용을 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
+  white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+}

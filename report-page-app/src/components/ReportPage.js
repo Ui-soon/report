@@ -8,6 +8,20 @@ import CommentComponent from './CommentComponent';
 import GraphComponent from './GraphComponent';
 import './ReportPage.css'; // 이 파일에서 레이아웃 관련 CSS를 정의합니다.
 
+const useFetchData = (url, setData, isSingleItem = false) => {
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get(url);
+				setData(isSingleItem ? response.data[0] : response.data);
+			} catch (error) {
+				console.log('Fetching data failed:', error);
+			}
+		};
+		fetchData();
+	}, [url, setData, isSingleItem]);
+};
+
 const ReportPage = () => {
 	const { studentId } = useParams(); // 현재 경로에서 studentId 파라미터를 추출합니다.
 	
@@ -18,48 +32,10 @@ const ReportPage = () => {
 	const [selectedSolWeek, setSelectedSolWeek] = useState(''); // 드롭다운 선택 상태
   const [selectedHwMonth, setSelectedHwMonth] = useState(''); // 드롭다운 선택 상태
 	const [selectedSolMonth, setSelectedSolMonth] = useState(''); // 드롭다운 선택 상태
-	
-  useEffect(() => {
-    const fetchStudent = async () => {
-      try {
-				// studentId를 URL에 포함시켜 API Gateway를 통해 Lambda 함수를 호출합니다.
-				const response = await axios.get(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/student/${studentId}`);
-				setStudentInfo(response.data[0]); // 응답 데이터를 저장합니다.
-      } catch (error) {
-        console.error('Fetching student data failed:', error);
-        // 오류 처리
-      }
-		};
-		fetchStudent();
-  }, [studentId]); // studentId가 변경될 때마다 fetchStudentData 함수를 다시 실행합니다.
 
-  useEffect(() => {
-    const fetchHomework = async () => {
-      try {
-				// studentId를 URL에 포함시켜 API Gateway를 통해 Lambda 함수를 호출합니다.
-				const response = await axios.get(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/homework/${studentId}`);
-				setHomeworks(response.data); // 응답 데이터를 저장합니다.
-      } catch (error) {
-        console.error('Fetching homework data failed:', error);
-        // 오류 처리
-      }
-		};
-		fetchHomework();
-	}, [studentId]); // studentId가 변경될 때마다 fetchStudentData 함수를 다시 실행합니다.
-	
-  useEffect(() => {
-    const fetchSolution = async () => {
-      try {
-				// studentId를 URL에 포함시켜 API Gateway를 통해 Lambda 함수를 호출합니다.
-				const response = await axios.get(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/solution/${studentId}`);
-				setSolutions(response.data); // 응답 데이터를 저장합니다.
-      } catch (error) {
-        console.error('Fetching solution data failed:', error);
-        // 오류 처리
-      }
-		};
-		fetchSolution();
-  }, [studentId]); // studentId가 변경될 때마다 fetchStudentData 함수를 다시 실행합니다.
+  useFetchData(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/student/${studentId}`, setStudentInfo, true);
+  useFetchData(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/homework/${studentId}`, setHomeworks, false);
+  useFetchData(`https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/solution/${studentId}`, setSolutions, false);
 
   // 드롭다운 숙제 월간 변경 핸들러
   const handleHwMonthChange = (e) => {
@@ -83,8 +59,8 @@ const ReportPage = () => {
 
   // 드롭다운 메뉴 컴포넌트
   const HwMonthDropdown = (
-    <select value={selectedHwMonth} onChange={handleHwMonthChange}>
-      <option value="">월 선택...</option>
+    <select className="month-dropdown" value={selectedHwMonth} onChange={handleHwMonthChange}>
+      <option value="">월</option>
 			<option value="1">1월</option>
 			<option value="2">2월</option>
 			<option value="3">3월</option>
@@ -96,14 +72,13 @@ const ReportPage = () => {
 			<option value="9">9월</option>
 			<option value="10">10월</option>
 			<option value="11">11월</option>
-			<option value="12">12월</option>
     </select>
 	);
 
   // 드롭다운 메뉴 컴포넌트
   const SolMonthDropdown = (
-    <select value={selectedSolMonth} onChange={handleSolMonthChange}>
-      <option value="">월 선택...</option>
+    <select className="month-dropdown" value={selectedSolMonth} onChange={handleSolMonthChange}>
+      <option value="">월</option>
 			<option value="1">1월</option>
 			<option value="2">2월</option>
 			<option value="3">3월</option>
@@ -115,13 +90,12 @@ const ReportPage = () => {
 			<option value="9">9월</option>
 			<option value="10">10월</option>
 			<option value="11">11월</option>
-			<option value="12">12월</option>
     </select>
 	);
 
   // 드롭다운 메뉴 컴포넌트
   const HwWeekDropdown = (
-    <select value={selectedHwWeek} onChange={handleHwWeekChange}>
+    <select className="week-dropdown" value={selectedHwWeek} onChange={handleHwWeekChange}>
       <option value="">주차</option>
 			<option value="1">1주차</option>
 			<option value="2">2주차</option>
@@ -133,7 +107,7 @@ const ReportPage = () => {
 	
   // 드롭다운 메뉴 컴포넌트
   const SolWeekDropdown = (
-    <select value={selectedSolWeek} onChange={handleSolWeekChange}>
+    <select className="week-dropdown" value={selectedSolWeek} onChange={handleSolWeekChange}>
       <option value="">주차</option>
 			<option value="1">1주차</option>
 			<option value="2">2주차</option>
@@ -176,14 +150,14 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
   return (
     <div className="report-page">
 			<SectionComponent header="[학생 REPORT]" content={<StudentInfoComponent studentData={studentInfo} />} />
-      <SectionComponent header="[연간 과제 성취도]" content={<GraphComponent type="annual" />} />
+			<SectionComponent header="[연간 과제 성취도]" content={<GraphComponent type="annual" scores={homeworkScores} />} />
       
 			<SectionComponent
 				header={
-					<span>
-						과제ㄴ수행 코멘트
+					<div className="header-with-dropdown">
+						과제수행 코멘트
 						{HwMonthDropdown}
-					</span>
+					</div>
 				}
 				content={
 					<>
@@ -200,10 +174,10 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
       
 			<SectionComponent
 				header={
-					<span>
-						솔루션S 코멘트x월
+					<div className="header-with-dropdown">
+						솔루션S 코멘트
 						{SolMonthDropdown}
-					</span>
+					</div>
 				}
 				
 				content={
@@ -216,8 +190,8 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
 							comments={solComment} />
 					</>
 				} />
-			<SectionComponent header="[솔루션S 참여도]" content={<GraphComponent type="weekly" scores={solutionScores}/>} />
-    </div>
+			<SectionComponent header="[솔루션S 참여도]" content={<GraphComponent type="weekly" scores={solutionScores} />} />
+		</div>
   );
 };
 
