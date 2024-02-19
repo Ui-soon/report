@@ -9,10 +9,29 @@
   column-gap: 20px;
 }
 
+.logos-container {
+  grid-column: 1 / -1; /* 로고를 첫 번째 행 전체에 걸쳐 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -30px;
+}
+
+.logo-detail {
+  width: 250px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .section {
   justify-content: center;
   width: 130px;
-  margin-top: 10px;
 }
 
 .section .header {
@@ -55,7 +74,7 @@
 }
 
 .section .student-info .student-info-line {
-  margin-top: 13px;
+  margin-top: 10px;
 }
 
 .section .student-info .label{

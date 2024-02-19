@@ -7,6 +7,8 @@ import StudentInfoComponent from './StudentInfoComponent';
 import CommentComponent from './CommentComponent';
 import GraphComponent from './GraphComponent';
 import './ReportPage.css'; // 이 파일에서 레이아웃 관련 CSS를 정의합니다.
+import SULogo from '../../src/Images/Logo.png';
+import JUSLogo from '../../src/Images/Logodetail.png';
 
 const useFetchData = (url, setData, isSingleItem = false) => {
 	useEffect(() => {
@@ -121,7 +123,6 @@ const ReportPage = () => {
 function sortDataByWeekAndMonth(data, selectedMonth) {
 	// 데이터가 null이거나 undefined이면 빈 배열 반환
 	if (!data) return [];
-
   // selectedMonth에 해당하는 데이터만 필터링
 	const filteredData = data.filter(item => item.month === parseInt(selectedMonth));
 
@@ -148,9 +149,13 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
 	const solComment = solutions?.find(comment => comment.month === parseInt(selectedSolMonth) && comment.week === parseInt(selectedSolWeek))?.comment ?? "데이터가 없습니다.";
 
   return (
-    <div className="report-page">
+		<div className="report-page">
+      <div className="logos-container">
+        <img src={SULogo} alt="이미지1 설명" className="logo" />
+        <img src={JUSLogo} alt="이미지2 설명" className="logo-detail" />
+      </div>
 			<SectionComponent header="[학생 REPORT]" content={<StudentInfoComponent studentData={studentInfo} />} />
-			<SectionComponent header="[연간 과제 성취도]" content={<GraphComponent type="annual" scores={homeworkScores} />} />
+			<SectionComponent header="[아이의 다짐]" content={<GraphComponent type="annual" scores={homeworkScores} />} />
       
 			<SectionComponent
 				header={

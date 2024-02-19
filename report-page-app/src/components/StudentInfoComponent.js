@@ -11,13 +11,13 @@ const StudentInfoComponent = ({ studentData }) => {
         <span className="label">이름 /</span><span className="student-info-data">{studentData.name}</span>
       </div>
       <div className="student-info-line">
-        <span className="label">입원성적 /</span> <span className="student-info-data">{studentData.en_grade}</span>
+        <span className="label">입원성적 /</span> <span className="student-info-data">{studentData.en_grade === 999 ? "X" : `${studentData.en_grade}점`}</span>
       </div>
       <div className="student-info-line">
         <span className="label">입학날짜 /</span> <span className="student-info-data">{studentData.en_date}</span>
       </div>
       <div className="student-info-line">
-        <span className="label">솔루션 배정반 /</span> <span className="student-info-data">{studentData.solution_class}반</span>
+        <span className="label">솔루션 배정반 /</span> <span className="student-info-data">{studentData.solution_class}</span>
       </div>
     </div>
   );
