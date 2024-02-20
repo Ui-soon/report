@@ -19,6 +19,27 @@ const StudentPage = () => {
 		}
 	};
 
+  const MAX_MEMO_LENGTH = 50; // 코멘트 최대 표시 길이
+
+  // 긴 텍스트를 줄여서 표시하는 함수
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
+  const renderMemoCell = (memo) => {
+    return (
+      <td
+        className="memo-cell"
+        title={memo} // 전체 코멘트를 툴팁으로 보여줌
+      >
+        {truncateText(memo, MAX_MEMO_LENGTH)}
+      </td>
+    );
+  };
+
 	const handleInputChange = (index, e) => {
 		const updatedStudents = [...studentInputs];
 		updatedStudents[index][e.target.name] = e.target.value;
@@ -26,7 +47,7 @@ const StudentPage = () => {
 	};
 
 	const handleAddStudent = () => {
-		setStudentInputs([...studentInputs, { name: '', en_grade: '', en_date: '', solution_class: '' }]);
+		setStudentInputs([...studentInputs, { name: '', en_grade: '', en_date: '', solution_class: '', memo: '' }]);
 	};
 
 	const handleRemoveStudent = (index) => {
@@ -43,6 +64,7 @@ const StudentPage = () => {
 					...input,
 					en_grade: parseInt(input.en_grade)
 			}));
+			console.log(studentInputs)
 			// await axios.post('https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/student', formattedInputs);
 			await axios.post('https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/student', formattedInputs);
 			console.log('학생 정보가 성공적으로 전송되었습니다.');
@@ -63,6 +85,7 @@ const StudentPage = () => {
 						<input type="text" name="name" value={input.name} onChange={(e) => handleInputChange(index, e)} placeholder="이름" required />
 						<input type="text" name="en_grade" value={input.en_grade} onChange={(e) => handleInputChange(index, e)} placeholder="입원성적" required />
 						<input type="text" name="en_date" value={input.en_date} onChange={(e) => handleInputChange(index, e)} placeholder="YYYY-MM-DD" required />
+						<textarea name="memo" value={input.memo} onChange={(e) => handleInputChange(index, e)} placeholder="학생 포부" required></textarea>
 						<input type="text" name="solution_class" value={input.solution_class} onChange={(e) => handleInputChange(index, e)} placeholder="솔루션 배정반" required />
 						<button type="button" onClick={() => handleRemoveStudent(index)}>제거</button>
 					</div>
@@ -80,7 +103,8 @@ const StudentPage = () => {
 							<th>이름</th>
 							<th>입원성적</th>
 							<th>입학일</th>
-							<th>솔루션 배정반</th>
+							<th>솔루션배정반</th>
+							<th>학생 다짐</th>
 						</tr>
 					</thead>
 					<tbody className='content-table'>
@@ -92,6 +116,7 @@ const StudentPage = () => {
 								<td>{student.en_grade}</td>
 								<td>{student.en_date}</td>
 								<td>{student.solution_class}</td>
+								{renderMemoCell(student.memo)}
 							</tr>
 						))}
 					</tbody>

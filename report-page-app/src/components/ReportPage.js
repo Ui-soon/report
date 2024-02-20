@@ -6,6 +6,7 @@ import SectionComponent from './SectionComponent';
 import StudentInfoComponent from './StudentInfoComponent';
 import CommentComponent from './CommentComponent';
 import GraphComponent from './GraphComponent';
+import StudentMentionComponent from './StudentMentionComponent';
 import './ReportPage.css'; // 이 파일에서 레이아웃 관련 CSS를 정의합니다.
 import SULogo from '../../src/Images/Logo.png';
 import JUSLogo from '../../src/Images/Logodetail.png';
@@ -155,7 +156,7 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
         <img src={JUSLogo} alt="이미지2 설명" className="logo-detail" />
       </div>
 			<SectionComponent header="[학생 REPORT]" content={<StudentInfoComponent studentData={studentInfo} />} />
-			<SectionComponent header="[아이의 다짐]" content={<GraphComponent type="annual" scores={homeworkScores} />} />
+			<SectionComponent header="[아이의 다짐]" content={<StudentMentionComponent studentData={studentInfo} />} />
       
 			<SectionComponent
 				header={
@@ -175,7 +176,7 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
 					</>
 				} 
 				/>
-			<SectionComponent header="[주간 과제 성취도]" content={<GraphComponent type="weekly" scores={homeworkScores} />} />
+			<SectionComponent header="[주간 과제 성취도]" content={<GraphComponent type="homework" scores={homeworkScores} />} />
       
 			<SectionComponent
 				header={
@@ -195,7 +196,7 @@ function sortDataByWeekAndMonth(data, selectedMonth) {
 							comments={solComment} />
 					</>
 				} />
-			<SectionComponent header="[솔루션S 참여도]" content={<GraphComponent type="weekly" scores={solutionScores} />} />
+			<SectionComponent header="[솔루션S 참여도]" content={<GraphComponent type="solution" scores={solutionScores} />} />
 		</div>
   );
 };

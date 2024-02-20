@@ -1,12 +1,13 @@
 .report-page {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2개의 열 */
+  place-items: center;
   padding: 20px; /* 페이지 내부 여백 */
   height: 800px;
   width: 400px;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 
 .logos-container {
@@ -20,7 +21,6 @@
 .logo-detail {
   width: 250px;
   height: auto;
-  margin-right: 10px;
 }
 
 .logo {
@@ -31,7 +31,7 @@
 
 .section {
   justify-content: center;
-  width: 130px;
+  width: 170px;
 }
 
 .section .header {
@@ -40,7 +40,7 @@
   font-weight: bold;
   font-size: 17px;
   margin-bottom: 3px;
-  width: 165px;
+  width: 170px;
 }
 
 .header-with-dropdown {
@@ -54,7 +54,7 @@
   background-color: #f9f9f9; /* 배경색 */
   font-size: 12px; /* 글꼴 크기 */
   cursor: pointer; /* 커서 스타일 */
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .week-dropdown {
@@ -65,16 +65,16 @@
 
 .section .content {
   background-color: #fff; /* content의 배경색 */
-  width: 150px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   padding: 5px; /* 여백 추가 */
   /* 기존 스타일 */
   color: black;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .section .student-info .student-info-line {
-  margin-top: 10px;
+  margin-top: 13px;
 }
 
 .section .student-info .label{
@@ -96,4 +96,8 @@
   max-height: 130px; /* 최대 높이 설정 */
   max-width: 150px; /* 최대 높이 설정 */
   overflow-y: auto; /* 세로 스크롤바 자동으로 제공 */
+}
+
+.section .content .student-mention .mention-content {
+  justify-content: center;
 }
