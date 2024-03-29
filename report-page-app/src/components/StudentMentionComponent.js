@@ -7,7 +7,7 @@ const StudentMentionComponent = ({ studentData }) => {
   }
   return (
     <div className="student-mention">
-      <p>{studentData.memo}</p>
+      <p className="mention-content">{studentData.memo}</p>
     </div>
   );
 };

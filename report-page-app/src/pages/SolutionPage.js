@@ -36,7 +36,11 @@ const SolutionPage = () => {
   const fetchStudents = async () => {
     try {
       const response = await axios.get('https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/student');
-      setStudents(response.data);
+      const sortedStudents = response.data.sort((a, b) => {
+        // 'name' 필드를 기준으로 문자열 비교를 통해 오름차순으로 정렬합니다.
+        return a.name.localeCompare(b.name);
+      });
+      setStudents(sortedStudents);
     } catch (error) {
       console.error('학생 목록 가져오기 실패:', error);
     }
@@ -45,7 +49,8 @@ const SolutionPage = () => {
   const fetchSolutions = async () => {
     try {
       const response = await axios.get('https://q0kstz9esk.execute-api.ap-northeast-2.amazonaws.com/get-std-info/solution');
-      setComments(response.data);
+      const sortedComments = response.data.sort((a, b) => a.student_id - b.student_id);
+      setComments(sortedComments);
     } catch (error) {
       console.error('코멘트 목록 가져오기 실패:', error);
     }

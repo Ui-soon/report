@@ -63,7 +63,7 @@ const ReportPage = () => {
   // 드롭다운 메뉴 컴포넌트
   const HwMonthDropdown = (
     <select className="month-dropdown" value={selectedHwMonth} onChange={handleHwMonthChange}>
-      <option value="">월</option>
+      <option value="">월 선택</option>
 			<option value="1">1월</option>
 			<option value="2">2월</option>
 			<option value="3">3월</option>
